@@ -6,6 +6,8 @@
 * [Initial setup](#initial-setup)
   * [Docker](#docker-image)
   * [NPM dependencies](#npm-dependencies)
+* [Testing](#testing)
+  * [Commit linting](#commit-linting)
 
 ## Overview
 
@@ -48,3 +50,16 @@ dependencies can be installed with the command:
 ```sh
 $ docker-compose run --rm app npm i
 ```
+
+## Testing
+
+The application is set up with multiple forms of automated testing.
+
+### Commit linting
+
+`git` commit messages are linted through
+[@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli), with the
+[@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional)
+configuration. `git` hooks are set up upon dependency installation through
+[husky](https://www.npmjs.com/package/husky). Commit messages are automatically linted on each
+commit.
