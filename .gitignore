@@ -1,4 +1,5 @@
 .config/
+.node-gyp/
 .npm
 
 node_modules/
