@@ -7,5 +7,6 @@ services:
       - APPLICATION_BUILD_NUMBER=development
       - APPLICATION_NAME=mikko-monthly-money
       - NODE_ENV=development
+    tty: true
     volumes:
       - ./:/home/node/app:delegated
