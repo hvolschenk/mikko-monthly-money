@@ -1,3 +1,4 @@
-const chalk = require('chalk');
+const { application: { name, version } } = require('configuration');
+const logger = require('shared/logger');
 
-console.log(chalk.whiteBright.bgGreen.bold(' Mikko monthly money '));
+logger.info(`Starting ${name()}@${version()}`);
