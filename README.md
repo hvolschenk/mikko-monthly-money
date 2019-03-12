@@ -7,6 +7,7 @@
   * [Docker](#docker-image)
   * [NPM dependencies](#npm-dependencies)
 * [Testing](#testing)
+  * [Vulnerability checking](#vulnerability-checking)
   * [Commit linting](#commit-linting)
 * [Dependencies](#dependencies)
 
@@ -54,7 +55,25 @@ $ docker-compose run --rm app npm i
 
 ## Testing
 
-The application is set up with multiple forms of automated testing.
+The application is set up with multiple forms of automated testing. These are
+[Vulnerability checking](#vulnerability-checking) and
+[Commit linting](#commit-linting).
+
+All tests can be run together with the command:
+
+```sh
+$ docker-compose run --rm app npm test
+```
+
+### Vulnerability checking
+
+All installed dependencies are scanned for vulnerabilities through the built-in
+[npm audit](https://docs.npmjs.com/cli/audit) command. Vulnerabilities can be checked in isolation
+with the command:
+
+```sh
+$ docker-compose run --rm app npm run test:vulnerabilities
+```
 
 ### Commit linting
 
