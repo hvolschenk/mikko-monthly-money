@@ -1,0 +1,24 @@
+{
+  "name": "mikko-monthly-money",
+  "version": "0.0.0",
+  "description": "Mikko monthly money command-line application",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hvolschenk/mikko-monthly-money.git"
+  },
+  "keywords": [
+    "mikko",
+    "rtl"
+  ],
+  "author": {
+    "email": "righteous.trespasser@gmail.com",
+    "name": "Hendrik Volschenk"
+  },
+  "contributors": [
+    {
+      "email": "righteous.trespasser@gmail.com",
+      "name": "Hendrik Volschenk"
+    }
+  ]
+}
