@@ -8,6 +8,7 @@
   * [NPM dependencies](#npm-dependencies)
 * [Testing](#testing)
   * [Commit linting](#commit-linting)
+* [Dependencies](#dependencies)
 
 ## Overview
 
@@ -63,3 +64,13 @@ The application is set up with multiple forms of automated testing.
 configuration. `git` hooks are set up upon dependency installation through
 [husky](https://www.npmjs.com/package/husky). Commit messages are automatically linted on each
 commit.
+
+## Dependencies
+
+Below is an index of dependencies that are not already mentioned above, and why they are added:
+
+* [chalk](https://www.npmjs.com/package/chalk)
+
+  Adding a bit of flair to the command-line output. Because some escape sequences behave differently
+  on different terminals, and because not all support color output, I opted for using this well-
+  maintained library instead.
