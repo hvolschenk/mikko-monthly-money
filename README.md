@@ -7,6 +7,7 @@
   * [Docker](#docker-image)
   * [NPM dependencies](#npm-dependencies)
 * [Testing](#testing)
+  * [Linting](#linting)
   * [Vulnerability checking](#vulnerability-checking)
   * [Commit linting](#commit-linting)
 * [Dependencies](#dependencies)
@@ -55,7 +56,7 @@ $ docker-compose run --rm app npm i
 
 ## Testing
 
-The application is set up with multiple forms of automated testing. These are
+The application is set up with multiple forms of automated testing. These are [Linting](#linting),
 [Vulnerability checking](#vulnerability-checking) and
 [Commit linting](#commit-linting).
 
@@ -63,6 +64,22 @@ All tests can be run together with the command:
 
 ```sh
 $ docker-compose run --rm app npm test
+```
+
+### Linting
+
+Linting is done through [eslint](https://eslint.org/) with the
+[eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) configuration.
+`require()` paths are linted through the use of the
+[eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) and
+[eslint-import-resolver-node](https://www.npmjs.com/package/eslint-import-resolver-node).
+The [eslint-plugin-security](https://www.npmjs.com/package/eslint-plugin-security) plugin is used to
+check for common security pitfalls.
+
+To run linting on it's own, use:
+
+```sh
+$ docker-compose run --rm app npm run test:lint
 ```
 
 ### Vulnerability checking
