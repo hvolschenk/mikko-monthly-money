@@ -1,0 +1,26 @@
+{
+  "env": {
+    "jest": true
+  },
+  "extends": ["airbnb-base", "plugin:security/recommended"],
+  "plugins": ["security"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ],
+    "linebreak-style": "off",
+    "object-curly-newline": ["error", { "consistent": true }],
+    "camelcase": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}
