@@ -4,13 +4,14 @@
 * [Prerequisites](#prerequisites)
   * [Docker](#docker)
 * [Initial setup](#initial-setup)
-  * [Docker](#docker-image)
+  * [Docker image](#docker-image)
   * [NPM dependencies](#npm-dependencies)
+* [Configuration](#configuration)
 * [Testing](#testing)
   * [Linting](#linting)
   * [Vulnerability checking](#vulnerability-checking)
   * [Commit linting](#commit-linting)
-* [Dependencies](#dependencies)
+* [Logging](#logging)
 
 ## Overview
 
@@ -53,6 +54,16 @@ dependencies can be installed with the command:
 ```sh
 $ docker-compose run --rm app npm i
 ```
+
+## Configuration
+
+Most application configuration is done through environment variables. These variables are set up in
+the `/docker-compose.yml` file and are as follows:
+
+| Name             | Default             | Description                                                          |
+| ---------------- | ------------------- | -------------------------------------------------------------------- |
+| APPLICATION_NAME | mikko-monthly-money | The name of the application (used for display, and the log filename) |
+| LOG_LEVEL        | info                | The level to log at (trace | debug | info | warn | error | fatal)    |
 
 ## Testing
 
@@ -101,12 +112,8 @@ configuration. `git` hooks are set up upon dependency installation through
 [husky](https://www.npmjs.com/package/husky). Commit messages are automatically linted on each
 commit.
 
-## Dependencies
+## Logging
 
-Below is an index of dependencies that are not already mentioned above, and why they are added:
-
-* [chalk](https://www.npmjs.com/package/chalk)
-
-  Adding a bit of flair to the command-line output. Because some escape sequences behave differently
-  on different terminals, and because not all support color output, I opted for using this well-
-  maintained library instead.
+All output messages are logged through [Bunyan](https://www.npmjs.com/package/bunyan) to the folder
+specified in the `LOG_PATH` environment variable, which is set in `/Dockerfile`. The `LOG_LEVEL`
+[Configuration](#configuration) option is used to specify which severity log message(s) to log.
