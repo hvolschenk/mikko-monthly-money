@@ -63,7 +63,7 @@ the `/docker-compose.yml` file and are as follows:
 | Name             | Default             | Description                                                          |
 | ---------------- | ------------------- | -------------------------------------------------------------------- |
 | APPLICATION_NAME | mikko-monthly-money | The name of the application (used for display, and the log filename) |
-| LOG_LEVEL        | info                | The level to log at (trace | debug | info | warn | error | fatal)    |
+| LOG_LEVEL        | info                | The level to log at (trace, debug, info, warn, error or fatal)       |
 
 ## Testing
 
