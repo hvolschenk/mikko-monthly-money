@@ -13,6 +13,7 @@
   * [Unit testing](#unit-testing)
   * [Commit linting](#commit-linting)
 * [Logging](#logging)
+* [Dependencies](#dependencies)
 
 ## Overview
 
@@ -61,10 +62,11 @@ $ docker-compose run --rm app npm i
 Most application configuration is done through environment variables. These variables are set up in
 the `/docker-compose.yml` file and are as follows:
 
-| Name             | Default             | Description                                                          |
-| ---------------- | ------------------- | -------------------------------------------------------------------- |
-| APPLICATION_NAME | mikko-monthly-money | The name of the application (used for display, and the log filename) |
-| LOG_LEVEL        | info                | The level to log at (trace, debug, info, warn, error or fatal)       |
+| Name             | Default                 | Description                                                                          |
+| ---------------- | ----------------------- | ------------------------------------------------------------------------------------ |
+| APPLICATION_NAME | mikko-monthly-money     | The name of the application (used for display, and the log filename)                 |
+| LOG_LEVEL        | info                    | The level to log at (trace, debug, info, warn, error or fatal)                       |
+| OUTPUT_FILENAME  | mikko-monthly-money.csv | The default name of the output file. Can be overwritten with a command-line argument |
 
 ## Testing
 
@@ -127,3 +129,11 @@ commit.
 All output messages are logged through [Bunyan](https://www.npmjs.com/package/bunyan) to the folder
 specified in the `LOG_PATH` environment variable, which is set in `/Dockerfile`. The `LOG_LEVEL`
 [Configuration](#configuration) option is used to specify which severity log message(s) to log.
+
+## Dependencies
+
+Below is an index of dependencies used in the application that are not already mentioned above:
+
+* [yargs](https://www.npmjs.com/package/yargs)
+
+  Makes reading command-line arguments a whole lot easier without having to build a custom parser.

@@ -1,9 +1,13 @@
 const APPLICATION_NAME = 'APPLICATION_NAME';
 const LOG_LEVEL = 'LOG_LEVEL';
 const LOG_PATH = 'LOG_PATH';
+const OUTPUT_FILENAME = 'OUTPUT_FILENAME';
+const OUTPUT_PATH = 'OUTPUT_PATH';
 const mockVersion = 'VERSION';
+const outputFilename = 'outputFilename';
 
 let configuration;
+let configurationEnvOnly;
 
 beforeAll(() => {
   jest.mock('../../package.json', () => ({ version: mockVersion }));
@@ -13,7 +17,18 @@ beforeAll(() => {
     APPLICATION_NAME,
     LOG_LEVEL,
     LOG_PATH,
+    OUTPUT_FILENAME,
+    OUTPUT_PATH,
+  }, {
+    outputFilename,
   });
+  configurationEnvOnly = builder({
+    APPLICATION_NAME,
+    LOG_LEVEL,
+    LOG_PATH,
+    OUTPUT_FILENAME,
+    OUTPUT_PATH,
+  }, {});
 });
 
 afterAll(() => {
@@ -38,4 +53,18 @@ describe('Reads the log path correctly', () => {
   test('Appends the filename to the log', () => {
     expect(configuration.log.path(FILE_NAME)).toBe(`${LOG_PATH}/${FILE_NAME}.log`);
   });
+});
+
+describe('Reads the output filename correctly', () => {
+  test('From command-line arguments', () => {
+    expect(configuration.output.filename()).toBe(outputFilename);
+  });
+
+  test('From environment variables', () => {
+    expect(configurationEnvOnly.output.filename()).toBe(OUTPUT_FILENAME);
+  });
+});
+
+test('Reads the output path correctly from environment variables', () => {
+  expect(configurationEnvOnly.output.path()).toBe(OUTPUT_PATH);
 });

@@ -40,6 +40,7 @@
     "jest": "^24.5.0"
   },
   "dependencies": {
-    "bunyan": "^1.8.12"
+    "bunyan": "^1.8.12",
+    "yargs": "^13.2.2"
   }
 }
