@@ -7,6 +7,9 @@
   * [Docker image](#docker-image)
   * [NPM dependencies](#npm-dependencies)
 * [Configuration](#configuration)
+* [Running](#running)
+  * [With default options](#with-default-options)
+  * [With command-line arguments](#with-command-line-arguments)
 * [Testing](#testing)
   * [Linting](#linting)
   * [Vulnerability checking](#vulnerability-checking)
@@ -68,13 +71,42 @@ the `/docker-compose.yml` file and are as follows:
 | LOG_LEVEL        | info                    | The level to log at (trace, debug, info, warn, error or fatal)                       |
 | OUTPUT_FILENAME  | mikko-monthly-money.csv | The default name of the output file. Can be overwritten with a command-line argument |
 
+## Running
+
+There are two main ways of running the application:
+
+### With default options
+
+All options have defaults set through environment variables, and as such the application can run
+without having to specify any. All options from the [Configuration](#configuration) section above
+will be used. The application can be run in this mode with the command:
+
+```sh
+$ docker-compose up
+```
+
+### With command-line arguments
+
+Some environment variables can be overwritten from the command-line, these are:
+
+| Name           | Description                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| outputFilename | The name of the output file (Overrides the `OUTPUT_FILENAME` environment variable) |
+
+The command to run the application with command-line arguments is a little different because with
+`docker-compose` arguments cannot be passed directly to the `docker-compose up` command:
+
+```sh
+$ docker-compose run --rm app npm start -- --outputFilename=new-filename.csv
+```
+
 ## Testing
 
 The application is set up with multiple forms of automated testing. These are [Linting](#linting),
-[Vulnerability checking](#vulnerability-checking) and
+[Vulnerability checking](#vulnerability-checking), [Unit testing](#unit-testing) and
 [Commit linting](#commit-linting).
 
-All tests can be run together with the command:
+All tests (excluding [Commit linting](#commit-linting)) can be run together with the command:
 
 ```sh
 $ docker-compose run --rm app npm test
@@ -137,3 +169,9 @@ Below is an index of dependencies used in the application that are not already m
 * [yargs](https://www.npmjs.com/package/yargs)
 
   Makes reading command-line arguments a whole lot easier without having to build a custom parser.
+
+* [sanitize-filename](https://www.npmjs.com/package/sanitize-filename)
+
+  To make sure the output file is portable between different OSs after saving, and to make sure that
+  users do not reach out of the container when saving this packages was chosen over writing a
+  custom sanitizer.
