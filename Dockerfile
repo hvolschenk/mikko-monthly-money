@@ -16,5 +16,4 @@ VOLUME [$LOG_PATH]
 
 RUN chown -R node:node $HOME
 RUN chown -R node:node $LOG_PATH
-RUN chown -R node:node $OUTPUT_PATH
 USER node
