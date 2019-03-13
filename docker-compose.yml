@@ -6,5 +6,6 @@ services:
     environment:
       - APPLICATION_NAME=mikko-monthly-money
       - LOG_LEVEL=info
+      - OUTPUT_FILENAME=mikko-monthly-money.csv
     volumes:
       - ./:/home/node/app:delegated
