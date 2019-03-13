@@ -10,6 +10,7 @@
 * [Testing](#testing)
   * [Linting](#linting)
   * [Vulnerability checking](#vulnerability-checking)
+  * [Unit testing](#unit-testing)
   * [Commit linting](#commit-linting)
 * [Logging](#logging)
 
@@ -101,6 +102,15 @@ with the command:
 
 ```sh
 $ docker-compose run --rm app npm run test:vulnerabilities
+```
+
+### Unit testing
+
+Unit testing is done through [jest](https://jestjs.io/). Unit tests can be run in isolation through
+the script:
+
+```sh
+$ docker-compose run --rm app npm run test:scripts
 ```
 
 ### Commit linting
