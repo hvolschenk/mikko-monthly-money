@@ -4,7 +4,7 @@ const { output: { filename, path } } = require('configuration');
 
 const getFullFilePath = require('./get-full-file-path');
 
-const output = fileContents => new Promise((resolve, reject) => {
+const saveFile = fileContents => new Promise((resolve, reject) => {
   const fullPath = getFullFilePath({ filename: filename(), path: path() });
   // This next line is potentially dangerous as the file path is determined from user input,
   // however, the warning is ignored as the filename is sanitized
@@ -19,4 +19,4 @@ const output = fileContents => new Promise((resolve, reject) => {
   });
 });
 
-module.exports = output;
+module.exports = saveFile;

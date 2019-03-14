@@ -4,7 +4,7 @@
   "description": "Mikko monthly money command-line application",
   "private": true,
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node src/application/index.js",
     "test": "npm run test:lint && npm run test:vulnerabilities && npm run test:scripts",
     "test:lint": "eslint --ext js .",
     "test:scripts": "jest --config ./jest.config.json --coverage",

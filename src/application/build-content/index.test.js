@@ -8,8 +8,8 @@ beforeAll(() => {
   jest.mock('./parse-month', () => mockParseMonth);
   jest.resetModules();
   // eslint-disable-next-line global-require
-  const content = require('./index');
-  result = content();
+  const buildContent = require('./index');
+  result = buildContent();
 });
 
 afterAll(() => {

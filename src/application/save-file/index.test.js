@@ -9,8 +9,8 @@ describe('When the file cannot be written', () => {
     jest.mock('fs', () => ({ writeFile: mockWriteFile }));
     jest.resetModules();
     // eslint-disable-next-line global-require
-    const output = require('./index');
-    promise = output();
+    const saveFile = require('./index');
+    promise = saveFile();
     mockWriteFile.mock.calls[0][2](ERROR);
     try {
       await promise;
@@ -48,8 +48,8 @@ describe('When the file can be written', () => {
     jest.mock('./get-full-file-path', () => mockGetFullFilePath);
     jest.resetModules();
     // eslint-disable-next-line global-require
-    const output = require('./index');
-    promise = output(FILE_CONTENTS);
+    const saveFile = require('./index');
+    promise = saveFile(FILE_CONTENTS);
     [mockWriteFileCall] = mockWriteFile.mock.calls;
     mockWriteFileCall[2]();
     result = await promise;
