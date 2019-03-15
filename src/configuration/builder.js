@@ -5,10 +5,12 @@ module.exports = ({
   LOG_LEVEL,
   LOG_PATH,
   OUTPUT_FILENAME,
+  OUTPUT_HEADINGS,
   OUTPUT_PATH,
 }, {
   logLevel,
   outputFilename,
+  outputHeadings,
 }) => {
   const applicationName = () => APPLICATION_NAME;
   const applicationVersion = () => version;
@@ -19,6 +21,7 @@ module.exports = ({
     const extension = /^.+\.([^.]+)$/.exec(outputFilenameConfiguration());
     return extension == null ? 'csv' : extension[1].toLowerCase();
   };
+  const outputHeadingsConfiguration = () => (outputHeadings || OUTPUT_HEADINGS) === 'true';
   const outputPath = () => OUTPUT_PATH;
   return {
     application: { name: applicationName, version: applicationVersion },
@@ -26,6 +29,7 @@ module.exports = ({
     output: {
       filename: outputFilenameConfiguration,
       filenameExtension: outputFilenameExtension,
+      headings: outputHeadingsConfiguration,
       path: outputPath,
     },
   };

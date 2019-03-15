@@ -1,4 +1,4 @@
-const { output: { filenameExtension } } = require('configuration');
+const { output: { filenameExtension, headings } } = require('configuration');
 const logger = require('shared/logger');
 
 const formatters = require('./formatters');
@@ -14,5 +14,5 @@ module.exports = (content) => {
     logger.debug('Formatting content using the \'csv\' formatter');
     formatter = formatters.csv;
   }
-  return formatter(content);
+  return formatter({ content, headings: headings() });
 };

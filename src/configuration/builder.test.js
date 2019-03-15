@@ -2,10 +2,12 @@ const APPLICATION_NAME = 'APPLICATION_NAME';
 const LOG_LEVEL = 'LOG_LEVEL';
 const LOG_PATH = 'LOG_PATH';
 const OUTPUT_FILENAME = 'OUTPUT.FILENAME';
+const OUTPUT_HEADINGS = 'OUTPUT_HEADINGS';
 const OUTPUT_PATH = 'OUTPUT_PATH';
 const logLevel = 'logLevel';
 const mockVersion = 'VERSION';
 const outputFilename = 'outputFilename';
+const outputHeadings = 'true';
 
 let configuration;
 let configurationEnvOnly;
@@ -19,16 +21,19 @@ beforeAll(() => {
     LOG_LEVEL,
     LOG_PATH,
     OUTPUT_FILENAME,
+    OUTPUT_HEADINGS,
     OUTPUT_PATH,
   }, {
     logLevel,
     outputFilename,
+    outputHeadings,
   });
   configurationEnvOnly = builder({
     APPLICATION_NAME,
     LOG_LEVEL,
     LOG_PATH,
     OUTPUT_FILENAME,
+    OUTPUT_HEADINGS,
     OUTPUT_PATH,
   }, {});
 });
@@ -80,6 +85,16 @@ describe('Reads the output filename correctly', () => {
 
   test('From environment variables', () => {
     expect(configurationEnvOnly.output.filename()).toBe(OUTPUT_FILENAME);
+  });
+});
+
+describe('Reads the output headings setting correctly', () => {
+  test('From command-line arguments', () => {
+    expect(configuration.output.headings()).toBe(true);
+  });
+
+  test('From environment variables', () => {
+    expect(configurationEnvOnly.output.headings()).toBe(false);
   });
 });
 

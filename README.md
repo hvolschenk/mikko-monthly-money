@@ -10,6 +10,9 @@
 * [Running](#running)
   * [With default options](#with-default-options)
   * [With command-line arguments](#with-command-line-arguments)
+* [Output](#output)
+  * [Directory](#directory)
+  * [Filetype](#filetype)
 * [Testing](#testing)
   * [Linting](#linting)
   * [Vulnerability checking](#vulnerability-checking)
@@ -68,8 +71,9 @@ the `/docker-compose.yml` file and are as follows:
 | Name             | Default                 | Description                                                                          |
 | ---------------- | ----------------------- | ------------------------------------------------------------------------------------ |
 | APPLICATION_NAME | mikko-monthly-money     | The name of the application (used for display, and the log filename)                 |
-| LOG_LEVEL        | info                    | The level to log at (trace, debug, info, warn, error or fatal)                       |
+| LOG_LEVEL        | info                    | The level to log at (`trace`, `debug`, `info`, `warn`, `error` or `fatal`)           |
 | OUTPUT_FILENAME  | mikko-monthly-money.csv | The default name of the output file. Can be overwritten with a command-line argument |
+| OUTPUT_HEADINGS  | true                    | Whether a heading should be added to each column (`true` or `false`)                 |
 
 ## Running
 
@@ -89,17 +93,31 @@ $ docker-compose up
 
 Some environment variables can be overwritten from the command-line, they are all optional:
 
-| Name           | Description                                                                                                     |
-| -------------- | --------------------------------------------------------------------------------------------------------------- |
-| logLevel       | The level to log at (trace, debug, info, warn, error or fatal) (Overrides the `LOG_LEVEL` environment variable) |
-| outputFilename | The name of the output file (Overrides the `OUTPUT_FILENAME` environment variable)                              |
+| Name           | Description                                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| logLevel       | The level to log at (trace, debug, info, warn, error or fatal) (Overrides the `LOG_LEVEL` environment variable)             |
+| outputFilename | The name of the output file (Overrides the `OUTPUT_FILENAME` environment variable)                                          |
+| outputHeadings | Whether a heading should be added to each column (`true` or `false`) (Overrides the `OUTPUT_HEADINGS` environment variable) |
 
 The command to run the application with command-line arguments is a little different because with
 `docker-compose` arguments cannot be passed directly to the `docker-compose up` command:
 
 ```sh
-$ docker-compose run --rm app npm start -- --logLevel=debug --outputFilename=new-filename.csv
+$ docker-compose run --rm app npm start -- --logLevel=debug --outputFilename=new-filename.json --outputHeadings=false
 ```
+
+## Output
+
+### Directory
+
+The output files are saved in the directory set in the `OUTPUT_PATH` environment variable, which is
+set in `/Dockerfile`.
+
+### Filetype
+
+The extension set in the `OUTPUT_FILENAME` environment variable (or overridden by the
+`outputFilename` command-line option) determines the type of output file that gets created.
+Currently `.csv` and `.json` filetypes are supported.
 
 ## Testing
 
