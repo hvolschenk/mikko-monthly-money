@@ -4,6 +4,7 @@ const mockParseMonth = jest.fn().mockImplementation(value => value + 1);
 let result;
 
 beforeAll(() => {
+  jest.mock('shared/logger');
   jest.mock('./get-remaining-months', () => mockGetRemainingMonths);
   jest.mock('./parse-month', () => mockParseMonth);
   jest.resetModules();
@@ -13,6 +14,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
+  jest.unmock('shared/logger');
   jest.unmock('./get-remaining-months');
   jest.unmock('./parse-month');
 });

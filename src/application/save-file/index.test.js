@@ -1,3 +1,11 @@
+beforeAll(() => {
+  jest.mock('shared/logger');
+});
+
+afterAll(() => {
+  jest.unmock('shared/logger');
+});
+
 describe('When the file cannot be written', () => {
   const ERROR = new Error('Cannot write file');
   const mockWriteFile = jest.fn();

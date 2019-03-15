@@ -9,5 +9,5 @@ const saveFile = require('./save-file');
 logger.info(`Starting ${name()}@${version()}`);
 
 compose(buildContent, formatContent, saveFile)()
-  .then(path => logger.info(`Saved output file to ${path}`))
+  .then(path => logger.info(`Saved output file to '${path}'`))
   .catch(error => logger.error({ err: error }, 'Error saving file'));
