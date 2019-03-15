@@ -1,7 +1,16 @@
+beforeAll(() => {
+  jest.mock('shared/logger');
+});
+
+afterAll(() => {
+  jest.unmock('shared/logger');
+});
+
 describe('When a formatter exists for the extension', () => {
   const FILENAME_EXTENSION = 'FILENAME_EXTENSION';
+  const FORMATTED_VALUE = 'FORMATTED_VALUE';
   const mockFilenameExtension = jest.fn().mockReturnValue(FILENAME_EXTENSION);
-  const mockFormatter = () => 'FORMATTER';
+  const mockFormatter = () => FORMATTED_VALUE;
   const mockFormatters = { [FILENAME_EXTENSION]: mockFormatter };
 
   let result;
@@ -11,7 +20,7 @@ describe('When a formatter exists for the extension', () => {
     jest.mock('./formatters', () => mockFormatters);
     jest.resetModules();
     // eslint-disable-next-line global-require
-    result = require('./index');
+    result = require('./index')();
   });
 
   afterAll(() => {
@@ -20,14 +29,15 @@ describe('When a formatter exists for the extension', () => {
   });
 
   test('Returns the correct formatter for the extension', () => {
-    expect(result).toBe(mockFormatter);
+    expect(result).toBe(FORMATTED_VALUE);
   });
 });
 
 describe('When no formatter exists for the extension', () => {
   const FILENAME_EXTENSION = 'FILENAME_EXTENSION';
+  const FORMATTED_VALUE = 'FORMATTED_VALUE';
   const mockFilenameExtension = jest.fn().mockReturnValue(FILENAME_EXTENSION);
-  const mockFormatter = () => 'FORMATTER';
+  const mockFormatter = () => FORMATTED_VALUE;
   const mockFormatters = { csv: mockFormatter };
 
   let result;
@@ -37,7 +47,7 @@ describe('When no formatter exists for the extension', () => {
     jest.mock('./formatters', () => mockFormatters);
     jest.resetModules();
     // eslint-disable-next-line global-require
-    result = require('./index');
+    result = require('./index')();
   });
 
   afterAll(() => {
@@ -46,6 +56,6 @@ describe('When no formatter exists for the extension', () => {
   });
 
   test('Returns the correct formatter for the extension', () => {
-    expect(result).toBe(mockFormatter);
+    expect(result).toBe(FORMATTED_VALUE);
   });
 });

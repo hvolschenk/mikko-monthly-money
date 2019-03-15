@@ -3,6 +3,7 @@ const LOG_LEVEL = 'LOG_LEVEL';
 const LOG_PATH = 'LOG_PATH';
 const OUTPUT_FILENAME = 'OUTPUT.FILENAME';
 const OUTPUT_PATH = 'OUTPUT_PATH';
+const logLevel = 'logLevel';
 const mockVersion = 'VERSION';
 const outputFilename = 'outputFilename';
 
@@ -20,6 +21,7 @@ beforeAll(() => {
     OUTPUT_FILENAME,
     OUTPUT_PATH,
   }, {
+    logLevel,
     outputFilename,
   });
   configurationEnvOnly = builder({
@@ -43,8 +45,14 @@ test('Reads the application version number correctly', () => {
   expect(configuration.application.version()).toBe(mockVersion);
 });
 
-test('Reads the log level correctly', () => {
-  expect(configuration.log.level()).toBe(LOG_LEVEL);
+describe('Reads the log level correctly', () => {
+  test('From command-line arguments', () => {
+    expect(configuration.log.level()).toBe(logLevel);
+  });
+
+  test('From environment variables', () => {
+    expect(configurationEnvOnly.log.level()).toBe(LOG_LEVEL);
+  });
 });
 
 describe('Reads the log path correctly', () => {

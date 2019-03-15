@@ -87,17 +87,18 @@ $ docker-compose up
 
 ### With command-line arguments
 
-Some environment variables can be overwritten from the command-line, these are:
+Some environment variables can be overwritten from the command-line, they are all optional:
 
-| Name           | Description                                                                        |
-| -------------- | ---------------------------------------------------------------------------------- |
-| outputFilename | The name of the output file (Overrides the `OUTPUT_FILENAME` environment variable) |
+| Name           | Description                                                                                                     |
+| -------------- | --------------------------------------------------------------------------------------------------------------- |
+| logLevel       | The level to log at (trace, debug, info, warn, error or fatal) (Overrides the `LOG_LEVEL` environment variable) |
+| outputFilename | The name of the output file (Overrides the `OUTPUT_FILENAME` environment variable)                              |
 
 The command to run the application with command-line arguments is a little different because with
 `docker-compose` arguments cannot be passed directly to the `docker-compose up` command:
 
 ```sh
-$ docker-compose run --rm app npm start -- --outputFilename=new-filename.csv
+$ docker-compose run --rm app npm start -- --logLevel=debug --outputFilename=new-filename.csv
 ```
 
 ## Testing
@@ -160,18 +161,20 @@ commit.
 
 All output messages are logged through [Bunyan](https://www.npmjs.com/package/bunyan) to the folder
 specified in the `LOG_PATH` environment variable, which is set in `/Dockerfile`. The `LOG_LEVEL`
-[Configuration](#configuration) option is used to specify which severity log message(s) to log.
+[Configuration](#configuration) option is used to specify which severity log message(s) to log, and
+can be overridden by the `logLevel` command-line argument. Log messages are written to both _stdout_
+and _file_.
 
 ## Dependencies
 
 Below is an index of dependencies used in the application that are not already mentioned above:
-
-* [yargs](https://www.npmjs.com/package/yargs)
-
-  Makes reading command-line arguments a whole lot easier without having to build a custom parser.
 
 * [sanitize-filename](https://www.npmjs.com/package/sanitize-filename)
 
   To make sure the output file is portable between different OSs after saving, and to make sure that
   users do not reach out of the container when saving this packages was chosen over writing a
   custom sanitizer.
+
+* [yargs](https://www.npmjs.com/package/yargs)
+
+  Makes reading command-line arguments a whole lot easier without having to build a custom parser.
