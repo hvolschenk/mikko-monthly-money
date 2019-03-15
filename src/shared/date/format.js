@@ -1,1 +1,4 @@
-module.exports = date => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+const formatMonthName = require('./format-month-name');
+
+module.exports = date =>
+  `${date.getDate()} ${formatMonthName(date.getMonth())} ${date.getFullYear()}`;
