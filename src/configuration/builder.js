@@ -11,26 +11,18 @@ module.exports = ({
   logLevel,
   outputFilename,
   outputHeadings,
-}) => {
-  const applicationName = () => APPLICATION_NAME;
-  const applicationVersion = () => version;
-  const logLevelConfiguration = () => logLevel || LOG_LEVEL;
-  const logPath = fileName => `${LOG_PATH}/${fileName}.log`;
-  const outputFilenameConfiguration = () => outputFilename || OUTPUT_FILENAME;
-  const outputFilenameExtension = () => {
-    const extension = /^.+\.([^.]+)$/.exec(outputFilenameConfiguration());
-    return extension == null ? 'csv' : extension[1].toLowerCase();
-  };
-  const outputHeadingsConfiguration = () => (outputHeadings || OUTPUT_HEADINGS) === 'true';
-  const outputPath = () => OUTPUT_PATH;
-  return {
-    application: { name: applicationName, version: applicationVersion },
-    log: { level: logLevelConfiguration, path: logPath },
-    output: {
-      filename: outputFilenameConfiguration,
-      filenameExtension: outputFilenameExtension,
-      headings: outputHeadingsConfiguration,
-      path: outputPath,
-    },
-  };
-};
+}) => ({
+  application: {
+    name: () => APPLICATION_NAME,
+    version: () => version,
+  },
+  log: {
+    level: () => logLevel || LOG_LEVEL,
+    path: fileName => `${LOG_PATH}/${fileName}.log`,
+  },
+  output: {
+    filename: () => outputFilename || OUTPUT_FILENAME,
+    headings: () => (outputHeadings || OUTPUT_HEADINGS) === 'true',
+    path: () => OUTPUT_PATH,
+  },
+});

@@ -1,10 +1,11 @@
-const { output: { filenameExtension, headings } } = require('configuration');
+const { output: { filename, headings } } = require('configuration');
+const { getFileExtension } = require('shared/filesystem');
 const logger = require('shared/logger');
 
 const formatters = require('./formatters');
 
 module.exports = (content) => {
-  const extension = filenameExtension();
+  const extension = getFileExtension(filename());
   // The next line is disabled as the extension and formatters are within our control
   // eslint-disable-next-line security/detect-object-injection
   let formatter = formatters[extension];

@@ -1,7 +1,7 @@
 const APPLICATION_NAME = 'APPLICATION_NAME';
 const LOG_LEVEL = 'LOG_LEVEL';
 const LOG_PATH = 'LOG_PATH';
-const OUTPUT_FILENAME = 'OUTPUT.FILENAME';
+const OUTPUT_FILENAME = 'OUTPUT_FILENAME';
 const OUTPUT_HEADINGS = 'OUTPUT_HEADINGS';
 const OUTPUT_PATH = 'OUTPUT_PATH';
 const logLevel = 'logLevel';
@@ -65,16 +65,6 @@ describe('Reads the log path correctly', () => {
 
   test('Appends the filename to the log', () => {
     expect(configuration.log.path(FILE_NAME)).toBe(`${LOG_PATH}/${FILE_NAME}.log`);
-  });
-});
-
-describe('Reads the output extension correctly', () => {
-  test('With no extension', () => {
-    expect(configuration.output.filenameExtension()).toBe('csv');
-  });
-
-  test('With an extension', () => {
-    expect(configurationEnvOnly.output.filenameExtension()).toBe('filename');
   });
 });
 
