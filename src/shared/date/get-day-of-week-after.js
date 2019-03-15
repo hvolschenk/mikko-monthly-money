@@ -1,3 +1,3 @@
 const getDayOfWeekRelative = require('./get-day-of-week-relative');
 
-module.exports = getDayOfWeekRelative(false);
+module.exports = getDayOfWeekRelative(true);
