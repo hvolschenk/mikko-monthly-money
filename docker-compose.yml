@@ -7,5 +7,6 @@ services:
       - APPLICATION_NAME=mikko-monthly-money
       - LOG_LEVEL=info
       - OUTPUT_FILENAME=mikko-monthly-money.csv
+      - OUTPUT_HEADINGS=true
     volumes:
       - ./:/home/node/app:delegated
