@@ -9,7 +9,7 @@ const {
 module.exports = ({ month, year }) => {
   let salaryDate = getLastDayOfMonth({ month, year });
   if (isWeekend(salaryDate)) {
-    salaryDate = getDayOfWeekBefore({ date: salaryDate });
+    salaryDate = getDayOfWeekBefore({ date: salaryDate, dayOfWeek: 5 });
   }
   return isPastDate(salaryDate) ? '' : format(salaryDate);
 };
