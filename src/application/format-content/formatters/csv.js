@@ -1,4 +1,7 @@
 module.exports = content => content.reduce(
-  (accumulator, { month, salaryDate }) => `${accumulator}${month},${salaryDate}\n`,
+  (
+    accumulator,
+    { bonusDate, month, salaryDate },
+  ) => `${accumulator}${month},${salaryDate},${bonusDate}\n`,
   '',
 );
