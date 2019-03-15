@@ -5,6 +5,7 @@
   "extends": ["airbnb-base", "plugin:security/recommended"],
   "plugins": ["security"],
   "rules": {
+    "implicit-arrow-linebreak": "off",
     "import/order": [
       "error",
       {
