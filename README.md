@@ -117,7 +117,13 @@ set in `/Dockerfile`.
 
 The extension set in the `OUTPUT_FILENAME` environment variable (or overridden by the
 `outputFilename` command-line option) determines the type of output file that gets created.
-Currently `.csv` and `.json` filetypes are supported.
+
+The following filetypes are currently supported:
+
+* `.csv` - Comma Separated Values
+* `.json` - JavaScript Object Notation
+* `.psv` - Pipe Separated Values
+* `.tsv` - Tab Separated Values
 
 ## Testing
 
