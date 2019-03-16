@@ -20,6 +20,8 @@
   * [Commit linting](#commit-linting)
 * [Logging](#logging)
 * [Dependencies](#dependencies)
+* [Assumptions](#assumptions)
+  * [Past dates](#past-dates)
 
 ## Overview
 
@@ -201,3 +203,12 @@ Below is an index of dependencies used in the application that are not already m
 * [yargs](https://www.npmjs.com/package/yargs)
 
   Makes reading command-line arguments a whole lot easier without having to build a custom parser.
+
+## Assumptions
+
+### Past dates
+
+In some cases a certain date (either bonus or salary) might be in the past, like the bonus date for
+March (15 Mar 2019). Although the specification text reads _...containing the payment dates for the
+remainder of this year_, the flowchart shows that those dates do not get filtered out. The decision
+was then made to rather include these dates.
