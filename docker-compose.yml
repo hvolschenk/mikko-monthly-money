@@ -8,6 +8,5 @@ services:
       - LOG_LEVEL=info
       - OUTPUT_FILENAME=mikko-monthly-money.csv
       - OUTPUT_HEADINGS=true
-    network_mode: "none"
     volumes:
       - ./:/home/node/app:delegated
