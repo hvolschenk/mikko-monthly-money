@@ -10,3 +10,4 @@ services:
       - OUTPUT_HEADINGS=true
     volumes:
       - ./:/home/node/app:delegated
+      - ./logs:/var/log/app:cached
