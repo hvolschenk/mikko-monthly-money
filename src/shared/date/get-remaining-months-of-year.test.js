@@ -1,4 +1,4 @@
-const getRemainingMonths = require('./get-remaining-months');
+const getRemainingMonthsOfYear = require('./get-remaining-months-of-year');
 
 const mockGetMonth = jest.fn().mockReturnValue(5);
 
@@ -14,5 +14,5 @@ afterAll(() => {
 });
 
 test('Returns an array of remaining months numbers (zero indexed)', () => {
-  expect(getRemainingMonths()).toEqual([5, 6, 7, 8, 9, 10, 11]);
+  expect(getRemainingMonthsOfYear()).toEqual([5, 6, 7, 8, 9, 10, 11]);
 });

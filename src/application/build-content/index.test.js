@@ -1,11 +1,11 @@
-const mockGetRemainingMonths = jest.fn().mockReturnValue([9, 10, 11]);
+const mockGetRemainingMonthsOfYear = jest.fn().mockReturnValue([9, 10, 11]);
 const mockParseMonth = jest.fn().mockImplementation(value => value + 1);
 
 let result;
 
 beforeAll(() => {
+  jest.mock('shared/date', () => ({ getRemainingMonthsOfYear: mockGetRemainingMonthsOfYear }));
   jest.mock('shared/logger');
-  jest.mock('./get-remaining-months', () => mockGetRemainingMonths);
   jest.mock('./parse-month', () => mockParseMonth);
   jest.resetModules();
   // eslint-disable-next-line global-require
@@ -14,8 +14,8 @@ beforeAll(() => {
 });
 
 afterAll(() => {
+  jest.unmock('shared/date');
   jest.unmock('shared/logger');
-  jest.unmock('./get-remaining-months');
   jest.unmock('./parse-month');
 });
 
