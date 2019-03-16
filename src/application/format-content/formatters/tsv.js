@@ -1,3 +1,3 @@
 const delimitedValues = require('./delimited-values');
 
-module.exports = delimitedValues('  ');
+module.exports = delimitedValues('\t');

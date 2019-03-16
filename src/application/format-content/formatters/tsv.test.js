@@ -15,7 +15,7 @@ afterAll(() => {
 });
 
 test('Builds a \'delimited values\' formatter with a tab', () => {
-  expect(mockDelimitedValues.mock.calls[0][0]).toBe(' ');
+  expect(mockDelimitedValues.mock.calls[0][0]).toBe('\t');
 });
 
 test('Returns the \'tsv\' formatter method', () => {
