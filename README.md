@@ -23,19 +23,19 @@
 
 ## Overview
 
-A small [NodeJS](https://nodejs.org/en/) command-line application that determines monthly payout
+A small [NodeJS](https://nodejs.org/en/) command-line application that determines monthly payment
 dates of salaries and bonuses for the remaining months of the current year.
 
 ## Prerequisites
 
-In order to run the application some local setup is required first.
+In order to run the application some local setup is required first:
 
 ### Docker
 
 The application runs inside a `docker` container, started up by `docker-compose`; both of these are
-required before using the application. On Windows and MacOS _Docker for desktop_ includes everything
-that is required. For Linux users, please install `docker` and `docker-compose` through your
-respective package-manager.
+required before using the application. On _Windows_ and _MacOS_ _Docker for desktop_ includes
+everything that is required. For _Linux_ users, please install `docker` and `docker-compose` through
+your respective package-manager.
 
 ## Initial setup
 
@@ -55,8 +55,7 @@ $ docker-compose build
 
 The [npm](https://www.npmjs.com/) dependencies for the application are installed locally and then
 volume-mapped into the `docker` container as opposed to being installed inside the `docker`
-container on build. This is done to give access to the `/node_modules` folder, and because
-dependencies are updated rather frequently which then doesn't require a full rebuild. The
+container on build. This is done to give access to the `/node_modules` folder directly. The
 dependencies can be installed with the command:
 
 ```sh
@@ -68,12 +67,12 @@ $ docker-compose run --rm app npm i
 Most application configuration is done through environment variables. These variables are set up in
 the `/docker-compose.yml` file and are as follows:
 
-| Name             | Default                 | Description                                                                          |
-| ---------------- | ----------------------- | ------------------------------------------------------------------------------------ |
-| APPLICATION_NAME | mikko-monthly-money     | The name of the application (used for display, and the log filename)                 |
-| LOG_LEVEL        | info                    | The level to log at (`trace`, `debug`, `info`, `warn`, `error` or `fatal`)           |
-| OUTPUT_FILENAME  | mikko-monthly-money.csv | The default name of the output file. Can be overwritten with a command-line argument |
-| OUTPUT_HEADINGS  | true                    | Whether a heading should be added to each column (`true` or `false`)                 |
+| Name               | Default                 | Description                                                                          |
+| ------------------ | ----------------------- | ------------------------------------------------------------------------------------ |
+| `APPLICATION_NAME` | mikko-monthly-money     | The name of the application (used for display, and the log filename)                 |
+| `LOG_LEVEL`        | info                    | The level to log at (`trace`, `debug`, `info`, `warn`, `error` or `fatal`)           |
+| `OUTPUT_FILENAME`  | mikko-monthly-money.csv | The default name of the output file. Can be overwritten with a command-line argument |
+| `OUTPUT_HEADINGS`  | true                    | Whether a heading should be added to each column (`true` or `false`)                 |
 
 ## Running
 
@@ -93,24 +92,24 @@ $ docker-compose up
 
 Some environment variables can be overwritten from the command-line, they are all optional:
 
-| Name           | Description                                                                                                                 |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| logLevel       | The level to log at (trace, debug, info, warn, error or fatal) (Overrides the `LOG_LEVEL` environment variable)             |
-| outputFilename | The name of the output file (Overrides the `OUTPUT_FILENAME` environment variable)                                          |
-| outputHeadings | Whether a heading should be added to each column (`true` or `false`) (Overrides the `OUTPUT_HEADINGS` environment variable) |
+| Name             | Overrides         | Description                                                                |
+| ---------------- | ----------------- | -------------------------------------------------------------------------- |
+| `logLevel`       | `LOG_LEVEL`       | The level to log at (`trace`, `debug`, `info`, `warn`, `error` or `fatal`) |
+| `outputFilename` | `OUTPUT_FILENAME` | The name of the output file                                                |
+| `outputHeadings` | `OUTPUT_HEADINGS` | Whether a heading should be added to each column (`true` or `false`)       |
 
 The command to run the application with command-line arguments is a little different because with
 `docker-compose` arguments cannot be passed directly to the `docker-compose up` command:
 
 ```sh
-$ docker-compose run --rm app npm start -- --logLevel=debug --outputFilename=new-filename.json --outputHeadings=false
+$ docker-compose run --rm app npm start -- --logLevel=debug --outputFilename=mikko.json --outputHeadings=false
 ```
 
 ## Output
 
 ### Directory
 
-The output files are saved in the directory set in the `OUTPUT_PATH` environment variable, which is
+The output file is saved in the directory set in the `OUTPUT_PATH` environment variable, which is
 set in `/Dockerfile`.
 
 ### Filetype
