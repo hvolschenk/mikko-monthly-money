@@ -2,14 +2,11 @@ const {
   format,
   getDayOfWeekBefore,
   getLastDayOfMonth,
-  isPastDate,
   isWeekend,
 } = require('shared/date');
 
 module.exports = ({ month, year }) => {
-  let salaryDate = getLastDayOfMonth({ month, year });
-  if (isWeekend(salaryDate)) {
-    salaryDate = getDayOfWeekBefore({ date: salaryDate, dayOfWeek: 5 });
-  }
-  return isPastDate(salaryDate) ? '' : format(salaryDate);
+  let date = getLastDayOfMonth({ month, year });
+  date = isWeekend(date) ? getDayOfWeekBefore({ date, dayOfWeek: 5 }) : date;
+  return format(date);
 };
