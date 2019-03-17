@@ -1,6 +1,6 @@
 FROM node:dubnium-alpine
 
-RUN apk update && apk add curl make python && rm -rf /var/cache/apk/*
+RUN apk update && apk add make python && rm -rf /var/cache/apk/*
 
 ENV HOME /home/node/app
 ENV LOG_PATH /var/log/app
