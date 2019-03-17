@@ -8,6 +8,12 @@ afterAll(() => {
 
 describe('When the file cannot be written', () => {
   const ERROR = new Error('Cannot write file');
+  const FILENAME = 'FILENAME';
+  const FULL_FILE_PATH = 'FULL_FILE_PATH';
+  const PATH = 'PATH';
+  const mockGetFullFilePath = jest.fn().mockReturnValue(FULL_FILE_PATH);
+  const mockFilename = jest.fn().mockReturnValue(FILENAME);
+  const mockPath = jest.fn().mockReturnValue(PATH);
   const mockWriteFile = jest.fn();
 
   let promise;
@@ -15,10 +21,12 @@ describe('When the file cannot be written', () => {
 
   beforeAll(async () => {
     jest.mock('fs', () => ({ writeFile: mockWriteFile }));
+    jest.mock('configuration', () => ({ output: { filename: mockFilename, path: mockPath } }));
+    jest.mock('./get-full-file-path', () => mockGetFullFilePath);
     jest.resetModules();
     // eslint-disable-next-line global-require
     const saveFile = require('./index');
-    promise = saveFile();
+    promise = saveFile('');
     mockWriteFile.mock.calls[0][2](ERROR);
     try {
       await promise;
@@ -29,6 +37,8 @@ describe('When the file cannot be written', () => {
 
   afterAll(() => {
     jest.unmock('fs');
+    jest.unmock('configuration');
+    jest.unmock('./get-full-file-path');
   });
 
   test('Rejects the promise with the error', () => {

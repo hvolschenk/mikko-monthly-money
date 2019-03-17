@@ -1,0 +1,14 @@
+language: node_js
+env:
+  NODE_PATH=./src
+notifications:
+  email: false
+node_js:
+  - '10'
+before_script:
+  - npm prune
+after_success:
+  - npm run coveralls
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/

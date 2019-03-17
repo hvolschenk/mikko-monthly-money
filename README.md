@@ -1,5 +1,8 @@
 # mikko-monthly-money
 
+[![Build Status](https://travis-ci.org/hvolschenk/mikko-monthly-money.svg?branch=master)](https://travis-ci.org/hvolschenk/mikko-monthly-money)
+[![Coverage Status](https://coveralls.io/repos/github/hvolschenk/mikko-monthly-money/badge.svg?branch=master)](https://coveralls.io/github/hvolschenk/mikko-monthly-money?branch=master)
+
 * [Overview](#overview)
 * [Prerequisites](#prerequisites)
   * [Docker](#docker)
@@ -18,9 +21,10 @@
   * [Vulnerability checking](#vulnerability-checking)
   * [Unit testing](#unit-testing)
   * [Commit linting](#commit-linting)
+* [Continuous integration](#continuous-integration)
 * [Logging](#logging)
 * [Dependencies](#dependencies)
-* [Assumptions](#assumptions)
+* [Notes](#notes)
   * [Past dates](#past-dates)
 
 ## Overview
@@ -182,6 +186,13 @@ configuration. `git` hooks are set up upon dependency installation through
 [husky](https://www.npmjs.com/package/husky). Commit messages are automatically linted on each
 commit.
 
+## Continuous integration
+
+A [Travis CI](https://travis-ci.org/hvolschenk/mikko-monthly-money) build is in place for each
+commit. This build will install dependencies and run all tests. After completion, test results will
+be pushed up to [Coveralls](https://coveralls.io/github/hvolschenk/mikko-monthly-money) using the
+[coveralls](https://www.npmjs.com/package/coveralls) library.
+
 ## Logging
 
 All output messages are logged through [Bunyan](https://www.npmjs.com/package/bunyan) to the folder
@@ -204,7 +215,7 @@ Below is an index of dependencies used in the application that are not already m
 
   Makes reading command-line arguments a whole lot easier without having to build a custom parser.
 
-## Assumptions
+## Notes
 
 ### Past dates
 
