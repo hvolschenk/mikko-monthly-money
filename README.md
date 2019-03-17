@@ -208,7 +208,7 @@ Below is an index of dependencies used in the application that are not already m
 * [sanitize-filename](https://www.npmjs.com/package/sanitize-filename)
 
   To make sure the output file is portable between different OSs after saving, and to make sure that
-  users do not reach out of the container when saving this packages was chosen over writing a
+  users do not reach out of the container when saving, this package was chosen over writing a
   custom sanitizer.
 
 * [yargs](https://www.npmjs.com/package/yargs)
