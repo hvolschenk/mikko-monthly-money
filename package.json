@@ -1,6 +1,6 @@
 {
   "name": "mikko-monthly-money",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Mikko monthly money command-line application",
   "private": true,
   "scripts": {
