@@ -68,6 +68,11 @@ dependencies can be installed with the command:
 $ docker-compose run --rm app npm i
 ```
 
+_There is currently an issue on Windows after installation when setting up the `git` commit hooks
+through [husky](https://www.npmjs.com/package/husky). This has to do with the volume mount not being
+owned by root. This does not stop the application from functioning, everything after this point
+should still function normally._
+
 ## Configuration
 
 Most application configuration is done through environment variables. These variables are set up in
